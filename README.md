@@ -38,9 +38,12 @@
 ## 內網穿透
 我們可以使用 Cloudflared Tunnel 來構建免費的內網穿透
 
-在 CMD 輸入 `winget install --id Cloudflare.cloudflared` 來下載 Cloudflared
+在 CMD 輸入 
+```winget install --id Cloudflare.cloudflared```
+來下載 Cloudflared
 
-下載後在 CMD 輸入 `cloudflared tunnel --url http://你的內網ip:80`
+下載後在 CMD 輸入 
+```cloudflared tunnel --url http://你的內網ip:80```
 
 他就會給你一個臨時的網址能夠訪問內網服務
 
