@@ -19,19 +19,40 @@ def handle_request(request):
     if path == '/favicon.ico':
         response = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 0\r\n\r\n"
     else:
-        html = """
+        # 取得當前時間
+        current_time = time.localtime()
+        formatted_time = "{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}".format(
+            current_time[0], current_time[1], current_time[2],
+            current_time[3], current_time[4], current_time[5]
+        )
+
+        html = f"""
         <!DOCTYPE html>
         <html>
         <head>
             <title>Pi Pico W</title>
+            <script>
+                function updateTime() {{
+                    let now = new Date();
+                    let timeString = now.getFullYear() + "-" +
+                        ("0" + (now.getMonth() + 1)).slice(-2) + "-" +
+                        ("0" + now.getDate()).slice(-2) + " " +
+                        ("0" + now.getHours()).slice(-2) + ":" +
+                        ("0" + now.getMinutes()).slice(-2) + ":" +
+                        ("0" + now.getSeconds()).slice(-2);
+                    document.getElementById("time").innerHTML = timeString;
+                }}
+                setInterval(updateTime, 1000);
+                window.onload = updateTime; 
+            </script>
         </head>
         <body>
             <h1>Welcome to Pi Pico W!</h1>
-            <p>this website made by MicoPython</p>
+            <p>This website is made by MicroPython</p>
+            <p>Current Time: <span id="time">{formatted_time}</span></p>
         </body>
         </html>
         """
-        
         headers = f"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: {len(html)}\r\nConnection: keep-alive\r\n\r\n"
         response = headers + html
         
