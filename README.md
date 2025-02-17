@@ -49,3 +49,18 @@
 這樣我們就能在外網看到我們的網站了
 
 ![alt text](docs/image4.png)
+
+
+## 實例
+- `main.py`
+    - 簡單靜態網頁，顯示當前時間
+- `webhook.py`
+    - 可以從網站上發送discord webhook(需填入webhook url)
+    - ![alt text](docs/image5.png)
+    - ![alt text](docs/image6.png)
+- `gemini.py`
+    - 可以從網站上對Gemini API發送請求(需填入API KEY [教學](https://github.com/imyimang/discord-gemini-chat-bot/blob/main/docs/zh/q2.md))
+    - ![alt text](docs/image7.png)
+
+> [!WARNING]  
+> 由於MicroPython不支援urllib.parse，上述兩種實例都僅能發送ascii表內的文字
